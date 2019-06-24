@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Dashboard</div>
+        <div class="card-header">Usuarios del Sistema</div>
 
         <div class="card-body">
 
@@ -31,10 +31,10 @@
                 <td>{{ implode('. ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
                 <td>
                   <a href="{{route('admin.users.edit', $user->id)}} ">
-                    <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Editar/Modificar Usuario"><i class="far fa-edit"></i></button>
                   </a>
-                  <a><button data-target="#modal-delete-{{$user->id}}" data-toggle="modal"
-                    class="btn btn-danger">Borrar</button></a>
+                  <a data-toggle="tooltip" data-placement="top" title="Eliminar Usuario"><button data-target="#modal-delete-{{$user->id}}" data-toggle="modal"
+                    class="btn btn-danger btn-sm"><i class="fas fa-ban"></i></button></a>
 
               </td>
 

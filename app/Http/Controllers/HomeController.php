@@ -27,19 +27,21 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function busca(Request $request){
-        $query = trim($request->get('codigoForm'));
-        $final="";
-        $matr=explode('*', $query);
-	    for ($a=0;$a<count($matr);$a++){
+        if ($request){
+            $query = trim($request->get('codigoForm'));
+            $final="";
+            $matr=explode('*', $query);
+	        for ($a=0;$a<count($matr);$a++){
 		    $final .= chr($matr[$a]);		
-	    }          
-      
+            } 
+        }  
         $reparations = DB::table('reparations as r')
                 ->where('matricula',  '=' ,  $final )
                 ->orderBy('fecha', 'desc')
-                ->paginate(17);
-        return view('reparation.index', ["reparations" => $reparations, 'matricula' => $query]);
+                ->paginate(10);
+        return view('reparation.index', ["reparations" => $reparations]);
     }
+
     public function index()
     {
         return view('home');

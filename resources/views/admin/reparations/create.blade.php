@@ -1,46 +1,34 @@
-@extends('layouts.admin')  
+@extends('layouts.app')
 @section ('content')
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <h2>Nueva Reparacion </h2>
+        <h2 class="text-center">Nueva Reparacion </h2>
         @if (count($errors)>0)
         <div class="alert alert-danger">
             <ul>
-
-
-
                 @foreach ($errors->all() as $error )
-
                 <li>
                     {{ $error}}
-
                 </li>
-
                 @endforeach
-
-
             </ul>
         </div>
         @endif
-        {!! Form::open(array('url'=>'reparation', 'method'=>'POST','autocomplete'=>'off'))!!}
+
+        {!! Form::open(array('url'=>'admin/admin/reparations', 'method'=>'POST','autocomplete'=>'off'))!!}
         {{Form::token()}}
         <div class="form-group">
-            <label for="idcarForm">Matricula</label>
-            <select name="idcarForm" class="form-control">
-                @foreach ($matriculas as $matricula )
-                <option value="{{$matricula->idcar}}">{{$matricula->matricula}} </option>
-
-                @endforeach
-
-            </select>
+            <label for="matriculaForm">Matricula</label>
+            <input type="text" name="matriculaForm" required value="{{old('matriculaForm')}}" class="form-control"
+               >
         </div>
         <div class="form-group">
-            <label for="desreparaForm">Desrepara</label>
+            <label for="desreparaForm">Reparacion</label>
             <input type="text" name="desreparaForm" required value="{{old('desreparaForm')}} " class="form-control"
                 placeholder="Descripcion de reparacion">
         </div>
         <div class="form-group">
-            <label for="fechaForm">fecha</label>
+            <label for="fechaForm">Fecha</label>
             <input type="date" name="fechaForm" required value="{{old('fechaForm')}} " class="form-control"
                 placeholder="fecha">
         </div>
@@ -50,10 +38,9 @@
                 placeholder="kilometros">
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">Guardar</button>
-            <a href="{{url('reparation')}} "><button class="btn btn-danger" type="button" >Cancelar</button>
+            <button class="btn btn-primary" type="submit"><i class="fas fa-cloud-upload-alt"></i></button>
+            <a href="{{url('admin/admin/reparations')}} "><button class="btn btn-danger" type="button"><i class="fas fa-ban"></i></button>
             </a>
-
         </div>
 
 

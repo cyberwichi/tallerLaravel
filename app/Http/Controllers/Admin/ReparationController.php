@@ -30,8 +30,9 @@ class ReparationController extends Controller
                 ->orWhere('matricula','LIKE', '%' . $query . '%')
                 ->orWhere('fecha','LIKE', '%' . $query . '%')
                 ->orderBy('matricula', 'desc')
-				->orderBy('fecha', 'desc')
-                ->paginate(17);
+                ->orderBy('fecha', 'desc')
+                ->paginate(10);
+                
             return view('admin.reparations.index', ["reparations" => $reparations, "searchText" => $query]);
         }
     }
@@ -43,13 +44,8 @@ class ReparationController extends Controller
      */
     public function create()
     {
-        $matricula="8244dyh";
-        $matr=Str_split($matricula,1);
-        $final="";
-        for ($a=0;$a<count($matr);$a++){
-            $final .= ord($matr[$a]).'*';		
-        }
-        echo $final;
+        
+        return view('admin.reparations.create');
     }
 
     /**
@@ -60,7 +56,14 @@ class ReparationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reparation = new Reparation;
+        $reparation->matricula = $request->get('matriculaForm');
+      
+        $reparation->desrepara = $request->get('desreparaForm');
+        $reparation->fecha = $request->get('fechaForm');
+        $reparation->kilometros = $request->get('kilometrosForm');
+        $reparation->save();
+        return Redirect::to('admin/admin/reparations');
     }
 
     /**
@@ -114,6 +117,8 @@ class ReparationController extends Controller
     {
         $reparation = Reparation::where('id', $id)->firstOrFail();
         $reparation->delete();
+        DB::statement('ALTER TABLE reparations AUTO_INCREMENT = '.(count(Reparation::all())+1).';');
+
         return Redirect::to('/admin/admin/reparations');
         
     }

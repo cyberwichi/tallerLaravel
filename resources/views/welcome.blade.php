@@ -88,7 +88,7 @@
             <div class="title m-b-md">
                 Taller
             </div>
-            {!! Form::open(array('url'=>'/busca', 'method'=>'post','autocomplete'=>'off'))!!}
+            {!! Form::open(array('url'=>'/busca', 'method'=>'get','autocomplete'=>'off'))!!}
             
 
             <div class="form-group">

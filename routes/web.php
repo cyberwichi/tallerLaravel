@@ -19,7 +19,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('busca','HomeController@busca')->name('busca');
+Route::get('busca','HomeController@busca')->name('busca');
 
 
 

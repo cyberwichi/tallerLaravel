@@ -16,7 +16,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                            <a href="{{ route('admin.user.delete', $user->id)}}">Si Borrar</a>
+                            <a class="text-danger" href="{{ route('admin.user.delete', $user->id)}}">Si Borrar <i class="fas fa-ban"></i></a>
             
                         </div>
                     </div>

@@ -14,8 +14,8 @@
                     </div>
                     @endif
 
-                    <a class="btn btn-primary" href="{{url('admin/admin/users')}}">Control Usuarios</a>
-                    <a class="btn btn-primary" href="{{url('admin/admin/reparations')}}">Control Reparaciones</a>
+                    <a class="btn btn-primary" href="{{url('admin/admin/users')}}"><i class="fas fa-users-cog"></i> Control Usuarios</a>
+                    <a class="btn btn-primary" href="{{url('admin/admin/reparations')}}"><i class="fas fa-car-crash"></i> Control Reparaciones</a>
 
                     <div class="col-md-12 mt-5">
                         <div class="box box-primary">
@@ -43,7 +43,7 @@
                                     
                                 </div>
                                 <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Cargar Datos</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"> Subir</i></button>
                                     </div>
 
                             </form>

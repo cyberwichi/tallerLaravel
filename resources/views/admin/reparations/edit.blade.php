@@ -44,8 +44,8 @@
             <input type="text" name="kilometrosForm" class="form-control" value="{{$reparation->kilometros}}">
         </div>
         <div class="form-group">
-                <button class="btn btn-primary" type="submit" >Guardar</button>
-        <a href="{{url('admin/admin/reparations')}} "><button class="btn btn-danger" type="button" >Cancelar</button>
+                <button class="btn btn-primary" type="submit" ><i class="fas fa-cloud-upload-alt"></i></button>
+        <a href="{{url('admin/admin/reparations')}} "><button class="btn btn-danger" type="button" ><i class="fas fa-ban"></i></button>
         </a>
 
             </div>
