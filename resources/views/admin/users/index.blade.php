@@ -15,7 +15,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
-                <th scope="col">Confirmado</th>
+                <th scope="col">Autorizado</th>
                 <th scope="col">Acciones</th>
 
 
@@ -28,7 +28,16 @@
                 <th scope="row">{{$user->id}}</th>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{ implode('. ',$user->roles()->get()->pluck('name')->toArray()) }}</td>
+               
+                <td>
+                    @if ($user->roles()->get()->pluck('name')->toArray())
+                    SI
+                    @else
+                    NO
+                    @endif
+                  
+                  {{-- {{ implode('. ',$user->roles()->get()->pluck('name')->toArray()) }} --}}
+                </td>
                 <td>
                   <a href="{{route('admin.users.edit', $user->id)}} ">
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Editar/Modificar Usuario"><i class="far fa-edit"></i></button>

@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/spin.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,18 +23,38 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="hidden">
+    <div id="spiner" class="centrado">
+            <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+    </div>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Taller
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-xm">
+            <div class="container text-center">
+                @auth
+                <a  style="width:15%;" class="navbar-nav text-center ml-auto"  href="{{ route('admin.home') }}">
+                <img style="width:75%;" src="{{asset('logo.jpg')}}" alt="TALLER 1.0.1">
                 </a>
+                @endauth
+
+                <h2 class="navbar-nav m-auto">
+                        TALLER 1.0.1
+                
+                </h2>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+               
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

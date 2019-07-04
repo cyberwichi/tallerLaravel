@@ -3,8 +3,8 @@
 
 <div class="input-group col-12 mt-3">
     <div class="input-group-prepend">
-        <button type="submit" class="btn btn-primary input-group-text">Buscar <i class="fas fa-search ml-1"> </i></button>
-        <input type="text" id="inlineFormInputGroup" class="form-control col-8" name="searchText"
+        <button type="submit" class="input-group-text">Buscar <i class="fas fa-search ml-1"> </i></button>
+        <input type="text" id="inlineFormInputGroup" class="form-control col-10" name="searchText"
             value="{{old($searchText)}}">
     </div>
     

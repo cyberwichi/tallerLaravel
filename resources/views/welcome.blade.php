@@ -71,7 +71,7 @@
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
-            <a href="{{ url('/home') }}">Inicio</a>
+            <a href="{{ route('admin.home') }}">Inicio</a>
             @else
             <a href="{{ route('login') }}">Acceso</a>
 
@@ -93,8 +93,8 @@
 
             <div class="form-group">
                 <label for="codigoForm">Codigo</label>
-                <input type="text" name="codigoForm" required value="{{old('codigoForm')}} " class="form-control"
-                    placeholder="Descripcion de reparacion">
+                <input id="codigoForm" type="text" name="codigoForm" required value="" class="form-control"
+                    placeholder="Codigo de Matricula">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Buscar</button>

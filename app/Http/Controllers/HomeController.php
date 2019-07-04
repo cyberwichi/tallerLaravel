@@ -8,6 +8,7 @@ use App\Reparation;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('auth');
+        //  $this->middleware('auth');
     }
 
     /**
@@ -26,24 +27,43 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function busca(Request $request){
-        if ($request){
+    public function busca(Request $request)
+    {
+        if ($request) {
             $query = trim($request->get('codigoForm'));
-            $final="";
-            $matr=explode('*', $query);
-	        for ($a=0;$a<count($matr);$a++){
-		    $final .= chr($matr[$a]);		
-            } 
-        }  
+            $final = "";
+            $matr = str_split($query, 2);
+            for ($a = 0; $a < count($matr); $a++) {
+                $final .= chr($matr[$a]);
+            }
+        }
+
         $reparations = DB::table('reparations as r')
-                ->where('matricula',  '=' ,  $final )
+            ->where('matricula',  '=',  $final)
+            ->orderBy('fecha', 'desc')
+            ->paginate(10);
+        if ($reparations->count() > 0) {
+            return view('reparation.index', ["reparations" => $reparations]);
+        };
+        return back();
+    }
+    public function pdf($searchText = "")
+    {
+        try {
+
+            $query = trim($searchText);
+            $reparations = DB::table('reparations as r')
+                ->where('matricula', 'LIKE', '%' . $query . '%')
                 ->orderBy('fecha', 'desc')
-                ->paginate(10);
-        return view('reparation.index', ["reparations" => $reparations]);
+                ->get();
+
+            $pdf = PDF::loadView('reparation.pdf', compact('reparations', 'searchText'));
+            return $pdf->stream();
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        } 
     }
 
     public function index()
-    {
-        return view('home');
-    }
+    { }
 }

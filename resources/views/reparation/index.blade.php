@@ -3,7 +3,7 @@
 
 <div class="row mb-3">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 text-center ">
-        <h2>Listado de Reparaciones</h2>
+        <h2>Listado de Reparacionesde la matricula: {{$reparations[0]->matricula}}</h2>
 
 
     </div>
@@ -23,9 +23,9 @@
 
 
                 <tr>
-                    <td>{{$reparation->desrepara}} </td>
+                    <td>{{strtoupper($reparation->desrepara)}} </td>
                     <td class="">{{Carbon::parse($reparation->fecha)->formatLocalized('%d %m %Y')}} </td>
-                    <td class="">{{$reparation->kilometros}} </td>
+                    <td class="">{{strtoupper($reparation->kilometros)}} </td>
                 </tr>
 
                 @endforeach
@@ -37,7 +37,7 @@
             $matr=Str_split($reparation->matricula ,1);
             $final="";
             for ($a=0;$a<count($matr);$a++)
-            {$final .= ord($matr[$a]).'*';}
+            {$final .= ord($matr[$a]);}
             
         
         ?>
@@ -48,6 +48,10 @@
 
 
 </div>
+<a class=" " href="/pdf/{{$reparations[0]->matricula}}"><button class="btn btn-secondary" data-toggle="tooltip"
+        data-placement="top" title="Exportar reparaciones a PDF">Exportar Listado Actual PDF <i
+            class="fas fa-file-export"></i></button></a>
+<a href="/"><button class="btn btn-secondary"><i class="fas fa-car-crash"></i> Volver</button></a>
 
 
 @endsection
